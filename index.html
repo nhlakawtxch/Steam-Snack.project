@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Steam & Snack by NHLKA</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Steam & Snack by NHLKA. Car wash, food and refreshments in one stop. 5087 Rooibos Ave, Winterveld Ext 3.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;600&display=swap">
+<style>
+:root{color-scheme:light;--ink:#0a0a0a;--soft:#555;--line:#e4e4e4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:1rem;scroll-behavior:smooth}html.lock{overflow:hidden}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.0625rem;line-height:1.55;background:#fff;background:linear-gradient(180deg,#fff 0%,#8c8c8c 55%,#000 100%)}
+h1,h2,h3{font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;line-height:1.05;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px #fff}
+button,input,select,textarea{font:inherit;color:inherit}
+
+.sheet{width:calc(100% - 1.5rem);max-width:940px;margin:.75rem auto 1.5rem;background:#fff;border-radius:36px;padding:0 clamp(1.2rem,5vw,3.5rem)}
+.top{height:4rem;display:flex;align-items:center;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.02em}
+
+/* menu button + side panel */
+.burger{position:fixed;z-index:30;top:calc(.8rem + env(safe-area-inset-top,0px));right:1rem;width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--ink);cursor:pointer;display:grid;place-content:center;gap:5px;padding:0}
+.burger span{display:block;width:24px;height:3px;border-radius:2px;background:#fff;transition:transform .25s,opacity .25s}
+.burger[aria-expanded=true]{background:#fff}.burger[aria-expanded=true] span{background:var(--ink)}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.scrim{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.45);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.scrim.show{opacity:1;visibility:visible}
+#drawer{position:fixed;z-index:25;top:0;right:0;bottom:0;width:min(440px,94vw);background:#fff;border-left:2px solid var(--ink);padding:calc(5rem + env(safe-area-inset-top,0px)) 1.5rem 3rem;transform:translateX(100%);visibility:hidden;transition:transform .3s,visibility .3s;overflow-y:auto;overscroll-behavior:contain}
+#drawer.open{transform:none;visibility:visible}
+.dt{border-bottom:2px solid var(--ink)}
+.dt>summary{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.7rem;padding:1rem 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:400;font-size:1.5rem;line-height:1}
+details[open]>summary::after{content:"−"}
+.dt>div{padding:0 0 1.2rem}
+.g{border-top:1px solid var(--line)}.g>summary{font-weight:600;font-size:1.08rem;padding:.8rem 0}
+.g>div,.g>.item,.g>p{margin-left:0}
+.sub2{margin:0 0 .4rem;color:var(--soft);font-size:.95rem}
+.item{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;padding:.65rem 0;border-bottom:1px dotted #bbb}
+.item:last-of-type{border-bottom:0}
+.item b{display:block;font-weight:600}.item span{color:var(--soft);font-size:.95rem}.item em{font-style:normal;font-weight:600;white-space:nowrap}
+.item::after{flex-basis:100%;font-size:.8rem;font-weight:600}
+.item[data-s=in]::after{content:"● Available"}.item[data-s=low]::after{content:"◐ Almost gone"}.item[data-s=out]::after{content:"○ Sold out today"}
+.item[data-s=out] b{text-decoration:line-through;opacity:.55}
+.faqs details{border-top:1px solid var(--line);padding:.8rem 0}.faqs summary{font-weight:600}.faqs p{margin:.6rem 0 0;color:var(--soft)}
+.goto{display:grid;margin-top:1.2rem}.goto a{padding:.65rem 0;text-decoration:none;font-weight:600;border-bottom:1px solid var(--line)}
+.goto a:hover{text-decoration:underline}
+
+/* pay demo */
+.meth{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin:.4rem 0 1rem}
+.meth label{display:block;position:relative}
+.meth input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.meth span{display:block;text-align:center;border:2px solid var(--ink);border-radius:14px;padding:.65rem .4rem;font-weight:600;font-size:.95rem}
+.meth input:checked+span{background:var(--ink);color:#fff}
+.meth input:focus-visible+span{outline:3px solid var(--ink);outline-offset:3px}
+.fld{display:grid;gap:.3rem;font-weight:600;font-size:.9rem;margin-bottom:.9rem}
+.fld input,.fld select,.fld textarea{border:0;border-bottom:2px solid var(--ink);border-radius:0;background:transparent;padding:.55rem 0;width:100%;font-weight:400;font-size:1rem}
+.fld textarea{min-height:70px;resize:vertical}
+.cf{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}.cf .fld:first-child{grid-column:1/-1}
+.btn{display:inline-block;padding:.85rem 1.5rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--ink);cursor:pointer;background:transparent}
+.btn.main{background:var(--ink);color:#fff}.btn:hover{transform:translateY(-2px)}.btn[disabled]{opacity:.6;cursor:wait}
+.note{font-size:.9rem;color:var(--soft);margin:.8rem 0 0}
+#pres{font-weight:600;margin:.8rem 0 0}
+
+/* page */
+.hero{text-align:center;padding:1rem 0 3.5rem}
+.logo{width:min(280px,70vw);margin:0 auto 1rem}.logo svg{width:100%;height:auto;display:block}
+.hero h1{font-weight:800;font-size:clamp(3rem,12vw,6.5rem);letter-spacing:-.04em}
+.hero h2{font-weight:500;font-size:clamp(1.2rem,4vw,1.8rem);letter-spacing:-.01em;margin-top:.3rem}
+.hero p{max-width:32ch;margin:1.3rem auto 1.4rem;font-size:1.15rem;color:var(--soft)}
+.badge{display:inline-flex;align-items:center;gap:.55rem;border:1.5px solid var(--ink);border-radius:999px;padding:.35rem .9rem;font-weight:600;font-size:.95rem;margin:0}
+.badge::before{content:"";width:.7rem;height:.7rem;border-radius:50%;border:2px solid var(--ink)}.badge.open::before{background:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:1.5rem}
+.s{border-top:1px solid var(--line);padding:2.6rem 0;display:grid;gap:1.4rem}
+@media(min-width:760px){.s{grid-template-columns:190px 1fr;gap:2.5rem}}
+.k{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--soft)}
+.s h2{font-size:clamp(1.8rem,4.5vw,2.5rem);font-weight:800;letter-spacing:-.02em;margin-bottom:1rem}
+.st{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));list-style:none;margin:0;padding:0}
+.st b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.3rem}.st span{color:var(--soft)}
+
+.pk{position:relative}
+.pk input{position:absolute;opacity:0;width:1px;height:1px}
+.pk .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.pk label{cursor:pointer;border:2px solid var(--ink);border-radius:999px;padding:.5rem 1.1rem;font-weight:600}
+.pp{display:none}
+#pk1:checked~.tabs label[for=pk1],#pk2:checked~.tabs label[for=pk2],#pk3:checked~.tabs label[for=pk3]{background:var(--ink);color:#fff}
+#pk1:focus-visible~.tabs label[for=pk1],#pk2:focus-visible~.tabs label[for=pk2],#pk3:focus-visible~.tabs label[for=pk3]{outline:3px solid var(--ink);outline-offset:3px}
+#pk1:checked~.pp1,#pk2:checked~.pp2,#pk3:checked~.pp3{display:block}
+.price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(3.5rem,12vw,5.5rem);letter-spacing:-.04em;line-height:1}
+.pp h3{font-size:1.5rem;margin:.5rem 0}.pp ul{margin:0 0 1rem;padding-left:1.1rem}.pp li{margin:.2rem 0}.pp small{color:var(--soft)}
+.pp .lnk{display:block;margin-top:.9rem;font-weight:600}
+.lnk{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+#bf{max-width:560px}
+#bsend{margin-top:.4rem}
+#bmsg{margin:.7rem 0 0;font-weight:600;min-height:1.5em}
+.pay{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.2rem;padding:0;list-style:none}
+.pay li{border:1.5px solid var(--ink);border-radius:10px;padding:.35rem .75rem;font-weight:600;font-size:.95rem}
+.find{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.find h3{font-size:1.1rem;margin-bottom:.35rem}.find p{margin:0;overflow-wrap:anywhere}.find a{font-weight:600;text-underline-offset:3px}
+footer{border-top:1px solid var(--line);padding:1.6rem 0 2rem;text-align:center;color:var(--soft);font-size:.92rem}
+/* order builder */
+.prog{display:flex;gap:.4rem;margin-bottom:1.2rem}.prog i{flex:1;height:4px;border-radius:2px;background:var(--line)}.prog i.on{background:var(--ink)}
+.stp{animation:stin .35s ease}
+@keyframes stin{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.stp h3{font-size:1.6rem;margin:0 0 1rem;outline:0}
+.opts{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.opt{text-align:left;border:2px solid var(--ink);border-radius:18px;background:#fff;padding:.9rem 1rem;cursor:pointer;display:grid;gap:.15rem;transition:transform .12s}
+.opt:hover,.opt.sel{background:var(--ink);color:#fff}.opt:active{transform:scale(.97)}
+.opt b{font-weight:600}.opt span{font-size:.9rem;opacity:.75}.opt em{font-style:normal;font-weight:600;margin-top:.3rem}
+.wnav{display:flex;gap:1rem;margin-top:1.1rem;align-items:center;font-size:.95rem}
+.sm{list-style:none;margin:0 0 1rem;padding:0}.sm li{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px dotted #bbb}
+.tot{display:flex;justify-content:space-between;align-items:baseline;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2rem;margin:.6rem 0 1.1rem}
+.acts{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+@media(prefers-reduced-motion:reduce){.stp{animation:none}.opt{transition:none}}
+.top{gap:.7rem}
+.top small{font-family:"Figtree",sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;border:1.5px solid var(--ink);border-radius:999px;padding:.15rem .6rem}
+.hero h1{font-size:clamp(2.6rem,10.5vw,5.6rem);letter-spacing:-.04em}
+.hero h1 .amp{font-weight:500;font-style:italic;font-family:Georgia,"Times New Roman",serif;letter-spacing:0;padding:0 .04em}
+.by{display:flex;align-items:center;justify-content:center;gap:.8rem;margin:1.1rem auto 0;max-width:340px}
+.by::before,.by::after{content:"";flex:1;height:1.5px;background:var(--ink)}
+.by i{font-family:Georgia,"Times New Roman",serif;font-size:1.25rem;color:var(--soft)}
+.by b{background:var(--ink);color:#fff;border-radius:999px;padding:.3rem 1rem;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;letter-spacing:.22em;font-size:1rem}
+@media(prefers-reduced-motion:reduce){.btn:hover{transform:none}html{scroll-behavior:auto}#drawer,.scrim{transition:none}}
+</style>
+</head>
+<body>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+<div class="scrim" id="scrim"></div>
+
+<aside id="drawer" aria-label="Menu, FAQ and payments">
+  <details class="dt" id="d-menu" name="dw"><summary>Menu</summary>
+    <div>
+      <p class="sub2">Just here for the wash? No need to buy food. Tell us about allergies when you order.</p>
+<details class="g" id="m-combos"><summary>Combo deals</summary><p class="sub2">Wash and eat for less</p><div class="item" data-s="in"><div><b>Quick Wash + Chips + Drink</b><span>Quick Steam, small chips, soft drink</span></div><em>R75</em></div><div class="item" data-s="in"><div><b>Full Steam + Burger + Drink</b><span>Full Steam, beef burger, any cold drink</span></div><em>R130</em></div><div class="item" data-s="low"><div><b>Deep Detail + Wrap + Smoothie</b><span>Deep Detail, chicken wrap, fruit smoothie</span></div><em>R230</em></div><div class="item" data-s="in"><div><b>Family Feast</b><span>12 wings, large chips, 4 soft drinks</span></div><em>R150</em></div></details>
+<details class="g" id="m-burgers"><summary>Burgers &amp; wraps</summary><div class="item" data-s="in"><div><b>Beef burger</b><span>Single patty, cheese, house sauce</span></div><em>R50</em></div><div class="item" data-s="in"><div><b>Chicken burger</b><span>Crumbed fillet, lettuce, mayo</span></div><em>R45</em></div><div class="item" data-s="low"><div><b>Double cheese burger</b><span>Two patties, double cheese</span></div><em>R65</em></div><div class="item" data-s="in"><div><b>Chicken wrap</b><span>Grilled chicken, salad, garlic sauce</span></div><em>R45</em></div></details>
+<details class="g" id="m-local"><summary>Kota &amp; local favourites</summary><div class="item" data-s="in"><div><b>Kota</b><span>Quarter loaf, chips, polony, cheese, atchar</span></div><em>R30</em></div><div class="item" data-s="in"><div><b>Full kota</b><span>Kota with egg and Russian</span></div><em>R45</em></div><div class="item" data-s="in"><div><b>Vetkoek &amp; mince</b><span>Two vetkoek with spiced mince</span></div><em>R35</em></div><div class="item" data-s="low"><div><b>Pap, wors &amp; chakalaka</b><span>Pap, boerewors, chakalaka</span></div><em>R50</em></div><div class="item" data-s="in"><div><b>Russian &amp; chips</b><span>Russian sausage with chips</span></div><em>R35</em></div></details>
+<details class="g" id="m-chips"><summary>Chips, chicken &amp; sides</summary><div class="item" data-s="in"><div><b>Small chips</b><span>Hot and crispy</span></div><em>R15</em></div><div class="item" data-s="in"><div><b>Large chips</b><span>Share or don’t</span></div><em>R25</em></div><div class="item" data-s="in"><div><b>Loaded fries</b><span>Cheese, sauce, crispy onions</span></div><em>R30</em></div><div class="item" data-s="in"><div><b>Wings (6)</b><span>Hot, BBQ or lemon pepper</span></div><em>R45</em></div><div class="item" data-s="in"><div><b>Chicken &amp; chips</b><span>3 pieces with small chips</span></div><em>R55</em></div><div class="item" data-s="out"><div><b>Nuggets (6)</b><span>With dipping sauce</span></div><em>R35</em></div></details>
+<details class="g" id="m-kids"><summary>Kids</summary><div class="item" data-s="in"><div><b>Kids meal</b><span>Nuggets, small chips, juice</span></div><em>R40</em></div><div class="item" data-s="in"><div><b>Kids kota</b><span>Mini kota with cheese</span></div><em>R25</em></div><div class="item" data-s="in"><div><b>Mini wrap</b><span>Chicken strips, mild sauce</span></div><em>R30</em></div></details>
+<details class="g" id="m-veg"><summary>Vegetarian &amp; light</summary><p class="sub2">Ask us about allergies and dietary needs</p><div class="item" data-s="in"><div><b>Veggie burger</b><span>Bean and veg patty. Vegetarian</span></div><em>R45</em></div><div class="item" data-s="out"><div><b>Veggie wrap</b><span>Grilled veg, hummus. Vegetarian</span></div><em>R40</em></div><div class="item" data-s="in"><div><b>Cheese toastie</b><span>Toasted cheese. Vegetarian</span></div><em>R30</em></div><div class="item" data-s="in"><div><b>Chips &amp; side salad</b><span>Vegetarian</span></div><em>R30</em></div><div class="item" data-s="in"><div><b>Fruit cup</b><span>Seasonal fruit</span></div><em>R25</em></div></details>
+<details class="g" id="m-cold"><summary>Cold drinks</summary><div class="item" data-s="in"><div><b>Soft drinks</b><span>Cold from the fridge</span></div><em>R15</em></div><div class="item" data-s="in"><div><b>Still water</b><span>500ml</span></div><em>R10</em></div><div class="item" data-s="in"><div><b>Fruit juice</b><span>Orange or apple</span></div><em>R15</em></div><div class="item" data-s="in"><div><b>Fresh lemonade</b><span>Squeezed to order</span></div><em>R20</em></div><div class="item" data-s="in"><div><b>Iced tea</b><span>Peach or lemon</span></div><em>R20</em></div><div class="item" data-s="in"><div><b>Iced coffee</b><span>Cold brew over ice</span></div><em>R25</em></div><div class="item" data-s="in"><div><b>Milkshake</b><span>Vanilla, chocolate or strawberry</span></div><em>R35</em></div><div class="item" data-s="low"><div><b>Fruit smoothie</b><span>Mango, strawberry or banana</span></div><em>R35</em></div></details>
+<details class="g" id="m-hot"><summary>Hot drinks</summary><div class="item" data-s="in"><div><b>Coffee</b><span>Filter or instant</span></div><em>R20</em></div><div class="item" data-s="in"><div><b>Cappuccino</b><span>Milky and smooth</span></div><em>R25</em></div><div class="item" data-s="in"><div><b>Hot chocolate</b><span>Rich and creamy</span></div><em>R22</em></div><div class="item" data-s="in"><div><b>Rooibos tea</b><span>South African classic</span></div><em>R12</em></div><div class="item" data-s="in"><div><b>Tea</b><span>Black, with milk or sugar</span></div><em>R12</em></div></details>
+<details class="g" id="m-sweet"><summary>Sweet treats</summary><div class="item" data-s="in"><div><b>Ice cream cone</b><span>Soft serve</span></div><em>R15</em></div><div class="item" data-s="in"><div><b>Muffin</b><span>Chocolate chip or blueberry</span></div><em>R15</em></div><div class="item" data-s="in"><div><b>Brownie</b><span>Fudgy and warm</span></div><em>R20</em></div><div class="item" data-s="out"><div><b>Doughnut</b><span>Sugar or cinnamon</span></div><em>R12</em></div></details>
+<details class="g" id="m-extras"><summary>Wash add-ons</summary><p class="sub2">Bakkies, SUVs and taxis: ask for a price</p><div class="item" data-s="in"><div><b>Wax polish</b><span>Shine and protection</span></div><em>R40</em></div><div class="item" data-s="low"><div><b>Engine rinse</b><span>Steam clean under the bonnet</span></div><em>R30</em></div><div class="item" data-s="in"><div><b>Mat deep clean</b><span>Foam and steam</span></div><em>R25</em></div><div class="item" data-s="in"><div><b>Pet-hair removal</b><span>Seats and carpets</span></div><em>R30</em></div><div class="item" data-s="out"><div><b>Headlight polish</b><span>Clearer light</span></div><em>R35</em></div><div class="item" data-s="in"><div><b>Air freshener</b><span>Pick your scent</span></div><em>R10</em></div></details>
+
+    </div>
+  </details>
+  <details class="dt" id="d-faq" name="dw"><summary>FAQ</summary><div class="faqs">
+<details><summary>What are your opening hours?</summary><p>Monday to Friday 8am to 8pm and Saturday 9am to 3pm. We don’t open on Sundays.</p></details>
+<details><summary>How long does a wash take?</summary><p>Quick Steam takes about 15 minutes, Full Steam about 30 and Deep Detail about 60.</p></details>
+<details><summary>Can I wait here while my car is washed?</summary><p>Yes. Sit down, order food and drinks, and we’ll call you when your car is ready.</p></details>
+<details><summary>Do I need to book?</summary><p>Booking holds a bay for you, so you won’t wait. If a bay is free, walk-ins are welcome.</p></details>
+<details><summary>How can I pay?</summary><p>Ask us when you arrive. We’ll confirm the payment options we accept.</p></details>
+<details><summary>Do you wash bakkies and taxis?</summary><p>Yes. Call us on 071 129 9222 for a price for bigger vehicles.</p></details>
+<details><summary>Where do I send a complaint or a question?</summary><p>Call or email us. Our details are at the bottom of this page.</p></details>
+  </div></details>
+  <details class="dt" id="d-pay" name="dw"><summary>Payments</summary><div>
+    <p class="sub2">Pick how you’d like to pay.</p>
+    <div class="meth" role="radiogroup" aria-label="Payment method">
+      <label><input type="radio" name="pm" value="Apple Pay" checked><span>Apple Pay</span></label>
+      <label><input type="radio" name="pm" value="Google Pay"><span>Google Pay</span></label>
+      <label><input type="radio" name="pm" value="Card">
